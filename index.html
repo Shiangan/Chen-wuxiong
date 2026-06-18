@@ -163,13 +163,34 @@
             letter-spacing: 3px; color: var(--sub-ink); margin-top: 15px;
         }
 
-        /* 時間軸 */
+        /* ══════════════════════════════
+           時間軸（修正對齊）
+        ══════════════════════════════ */
         .time-timeline {
             margin: 50px 0;
-            display: flex; flex-direction: column;
-            align-items: center; gap: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
         }
-        .time-box { display: flex; align-items: center; gap: 25px; }
+
+        /* 第一個 time-box：2欄 Grid，兩行對齊 */
+        .time-box-grid {
+            display: grid;
+            grid-template-columns: 72px auto;
+            grid-template-rows: auto auto;
+            align-items: center;
+            row-gap: 18px;
+            column-gap: 25px;
+        }
+
+        /* 第二個 time-box：單行 flex */
+        .time-box {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
         .time-tag {
             font-size: 18px; color: var(--gold-dark);
             width: 72px; font-weight: 700;
@@ -397,6 +418,7 @@
         /* ── 響應式微調 ── */
         @media (max-width: 360px) {
             .time-tag  { font-size: 15px; width: 60px; }
+            .time-box-grid { grid-template-columns: 60px auto; }
             .time-main { font-size: 24px; }
             .ink-wrap  { gap: 12px; }
             .ink-line  { font-size: 20px; }
@@ -476,17 +498,23 @@
                 <div class="date-hero" aria-label="七月五日">07.05</div>
                 <div class="date-sub">民國 115 年 ‧ 國曆七月五日（星期日）</div>
 
+                <!-- ✅ 修正後的時間軸 -->
                 <div class="time-timeline" role="list">
-                    <div class="time-box" role="listitem">
+
+                    <!-- 第一個 time-box：Grid 2欄對齊兩行 -->
+                    <div class="time-box-grid" role="listitem">
                         <span class="time-tag">家奠禮</span>
                         <span class="time-main" aria-label="早上七時五十分">07：50</span>
                         <span class="time-tag">公奠禮</span>
                         <span class="time-main" aria-label="早上八時三十分">08：30</span>
                     </div>
+
+                    <!-- 第二個 time-box：單行 flex -->
                     <div class="time-box" role="listitem">
                         <span class="time-tag" style="font-size:15px; width:72px;">隨即發引</span>
                         <span class="time-main" style="font-size:20px; color:var(--sub-ink);" aria-label="隨即火化">火化</span>
                     </div>
+
                 </div>
 
                 <div class="info-card">
